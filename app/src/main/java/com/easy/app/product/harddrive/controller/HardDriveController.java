@@ -1,14 +1,16 @@
 package com.easy.app.product.harddrive.controller;
 
 import com.easy.app.product.harddrive.model.dto.HardDriveDto;
+import com.easy.app.product.harddrive.model.dto.NewHardDriveRequestDto;
 import com.easy.app.product.harddrive.service.HardDriveService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/harddrives")
+@RequestMapping("/harddrives")
 @AllArgsConstructor
 public class HardDriveController {
     private final HardDriveService service;
@@ -24,12 +26,12 @@ public class HardDriveController {
     }
 
     @PatchMapping
-    public HardDriveDto editHardDrive(@RequestBody HardDriveDto hardDriveDto) {
+    public HardDriveDto editHardDrive(@RequestBody NewHardDriveRequestDto hardDriveDto) {
         return service.editHardDrive(hardDriveDto);
     }
 
     @PostMapping
-    public HardDriveDto addHardDrive(@RequestBody HardDriveDto hardDriveDto) {
-        return service.addHardDrive(hardDriveDto);
+    public HardDriveDto addHardDrive(@Valid @RequestBody NewHardDriveRequestDto newHardDriveDto) {
+        return service.addHardDrive(newHardDriveDto);
     }
 }

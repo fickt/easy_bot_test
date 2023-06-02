@@ -1,5 +1,7 @@
 package com.easy.app.product.laptop.model.dto;
 
+import com.easy.app.product.harddrive.model.dto.HardDriveDto;
+import com.easy.app.product.harddrive.model.dto.NewHardDriveRequestDto;
 import com.easy.app.product.laptop.model.entity.Laptop;
 
 public class LaptopDtoConverter {
@@ -21,6 +23,15 @@ public class LaptopDtoConverter {
         laptop.setSerialNumber(laptopDto.getSerialNumber());
         laptop.setInchType(laptopDto.getInchType());
         return laptop;
+    }
+
+    public static LaptopDto fromNewDtoToDto(NewLaptopRequestDto newLaptopDto) {
+        var laptopDto = new LaptopDto();
+        laptopDto.setSerialNumber(newLaptopDto.getSerialNumber());
+        laptopDto.setQuantity(newLaptopDto.getQuantity());
+        laptopDto.setPrice(newLaptopDto.getPrice());
+        laptopDto.setManufacturer(newLaptopDto.getManufacturer());
+        return laptopDto;
     }
 
 

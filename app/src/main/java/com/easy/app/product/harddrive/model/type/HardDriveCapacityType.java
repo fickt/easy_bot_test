@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "hard_drive_capacity_type")
+@Table(name = "capacity_type_table")
 public class HardDriveCapacityType {
     @Id
     private Long id;

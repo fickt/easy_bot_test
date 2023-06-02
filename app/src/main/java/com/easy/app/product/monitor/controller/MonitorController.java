@@ -1,14 +1,16 @@
 package com.easy.app.product.monitor.controller;
 
 import com.easy.app.product.monitor.model.dto.MonitorDto;
+import com.easy.app.product.monitor.model.dto.NewMonitorRequestDto;
 import com.easy.app.product.monitor.service.MonitorService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/monitors")
+@RequestMapping("/monitors")
 @AllArgsConstructor
 public class MonitorController {
     private final MonitorService service;
@@ -23,12 +25,12 @@ public class MonitorController {
     }
 
     @PatchMapping
-    public MonitorDto editMonitor(@RequestBody MonitorDto monitorDto) {
+    public MonitorDto editMonitor(@RequestBody NewMonitorRequestDto monitorDto) {
         return service.editMonitor(monitorDto);
     }
 
     @PostMapping
-    public MonitorDto addMonitor(@RequestBody MonitorDto monitorDto) {
-        return service.addMonitor(monitorDto);
+    public MonitorDto addMonitor(@Valid @RequestBody NewMonitorRequestDto newMonitorDto) {
+        return service.addMonitor(newMonitorDto);
     }
 }

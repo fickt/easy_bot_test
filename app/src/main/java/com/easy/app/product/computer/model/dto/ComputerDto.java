@@ -1,24 +1,23 @@
 package com.easy.app.product.computer.model.dto;
 
-import com.easy.app.manufacturer.Manufacturer;
+import com.easy.app.manufacturer.entity.Manufacturer;
 import com.easy.app.product.computer.model.type.ComputerType;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
-@AllArgsConstructor
 public class ComputerDto {
-    @NotBlank
+    @NotNull(message = "serial number should not be empty")
     private String serialNumber;
-    @NotBlank
+    @NotNull(message = "manufacturer should not be empty")
     private Manufacturer manufacturer;
-    @NotBlank
+    @NotNull(message = "price should not be empty")
     private BigDecimal price;
-    @NotBlank
+    @NotNull(message = "quantity should not be empty")
     private Long quantity;
-    @NotBlank
+    @NotNull(message = "computer type should not be empty")
     private ComputerType computerType;
 }

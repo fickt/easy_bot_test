@@ -14,10 +14,21 @@ public class ComputerDtoConverter {
     }
 
     public static ComputerDto toDto(Computer computer) {
-        return new ComputerDto(computer.getSerialNumber(),
-                computer.getManufacturer(),
-                computer.getPrice(),
-                computer.getQuantity(),
-                computer.getComputerType());
+        var computerDto = new ComputerDto();
+        computerDto.setSerialNumber(computer.getSerialNumber());
+        computerDto.setManufacturer(computer.getManufacturer());
+        computerDto.setPrice(computer.getPrice());
+        computerDto.setQuantity(computer.getQuantity());
+        computerDto.setComputerType(computer.getComputerType());
+        return computerDto;
+    }
+
+    public static ComputerDto fromNewDtoToDto(NewComputerRequestDto newComputerRequestDto) {
+        var computerDto = new ComputerDto();
+        computerDto.setSerialNumber(newComputerRequestDto.getSerialNumber());
+        computerDto.setQuantity(newComputerRequestDto.getQuantity());
+        computerDto.setPrice(newComputerRequestDto.getPrice());
+        computerDto.setManufacturer(newComputerRequestDto.getManufacturer());
+        return computerDto;
     }
 }

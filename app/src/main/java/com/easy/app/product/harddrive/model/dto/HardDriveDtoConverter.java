@@ -22,4 +22,13 @@ public class HardDriveDtoConverter {
         hardDrive.setPrice(hardDriveDto.getPrice());
         return hardDrive;
     }
+
+    public static HardDriveDto fromNewDtoToDto(NewHardDriveRequestDto newHardDriveRequestDto) {
+        var hardDriveDto = new HardDriveDto();
+        hardDriveDto.setSerialNumber(newHardDriveRequestDto.getSerialNumber());
+        hardDriveDto.setQuantity(newHardDriveRequestDto.getQuantity());
+        hardDriveDto.setPrice(newHardDriveRequestDto.getPrice());
+        hardDriveDto.setManufacturer(newHardDriveRequestDto.getManufacturer());
+        return hardDriveDto;
+    }
 }

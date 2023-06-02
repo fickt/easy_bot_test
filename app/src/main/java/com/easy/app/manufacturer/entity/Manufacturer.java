@@ -1,4 +1,4 @@
-package com.easy.app.manufacturer;
+package com.easy.app.manufacturer.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,6 @@ import lombok.Setter;
 @Table(name = "manufacturer_table")
 public class Manufacturer {
     @Id
-    private Long id;
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 }

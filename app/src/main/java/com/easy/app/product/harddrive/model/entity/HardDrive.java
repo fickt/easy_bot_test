@@ -1,6 +1,6 @@
 package com.easy.app.product.harddrive.model.entity;
 
-import com.easy.app.manufacturer.Manufacturer;
+import com.easy.app.manufacturer.entity.Manufacturer;
 import com.easy.app.product.harddrive.model.type.HardDriveCapacityType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class HardDrive {
     )
     private String serialNumber;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_manufacturer_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_manufacturer_id", referencedColumnName = "name")
     private Manufacturer manufacturer;
     @Column(name = "price", nullable = false)
     private BigDecimal price;

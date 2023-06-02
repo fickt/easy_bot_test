@@ -22,4 +22,13 @@ public class MonitorDtoConverter {
         monitor.setScreenSize(monitorDto.getScreenSize());
         return monitor;
     }
+
+    public static MonitorDto fromNewToDto(NewMonitorRequestDto newMonitorRequestDto) {
+        var monitorDto = new MonitorDto();
+        monitorDto.setPrice(newMonitorRequestDto.getPrice());
+        monitorDto.setManufacturer(newMonitorRequestDto.getManufacturer());
+        monitorDto.setQuantity(newMonitorRequestDto.getQuantity());
+        monitorDto.setSerialNumber(newMonitorRequestDto.getSerialNumber());
+        return monitorDto;
+    }
 }

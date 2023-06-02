@@ -1,6 +1,6 @@
 package com.easy.app.product.computer.model.entity;
 
-import com.easy.app.manufacturer.Manufacturer;
+import com.easy.app.manufacturer.entity.Manufacturer;
 import com.easy.app.product.computer.model.type.ComputerType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class Computer {
     )
     private String serialNumber; // не уточнён формат серийного номера, будет String на всякий случай
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_manufacturer_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_manufacturer_id", referencedColumnName = "name")
     private Manufacturer manufacturer;
     @Column(name = "price", nullable = false)
     private BigDecimal price; //для пущей точности BigDecimal

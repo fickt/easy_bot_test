@@ -1,14 +1,16 @@
 package com.easy.app.product.laptop.controller;
 
 import com.easy.app.product.laptop.model.dto.LaptopDto;
+import com.easy.app.product.laptop.model.dto.NewLaptopRequestDto;
 import com.easy.app.product.laptop.service.LaptopService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/laptops")
+@RequestMapping("/laptops")
 @AllArgsConstructor
 public class LaptopController {
 
@@ -24,12 +26,12 @@ public class LaptopController {
     }
 
     @PatchMapping
-    public LaptopDto editLaptop(@RequestBody LaptopDto laptopDto) {
+    public LaptopDto editLaptop(@RequestBody NewLaptopRequestDto laptopDto) {
         return service.editLaptop(laptopDto);
     }
 
     @PostMapping
-    public LaptopDto addLaptop(@RequestBody LaptopDto laptopDto) {
-        return service.addLaptop(laptopDto);
+    public LaptopDto addLaptop(@Valid @RequestBody NewLaptopRequestDto newLaptopDto) {
+        return service.addLaptop(newLaptopDto);
     }
 }
