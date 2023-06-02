@@ -5,6 +5,7 @@ import com.easy.app.product.computer.model.type.ComputerType;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 
