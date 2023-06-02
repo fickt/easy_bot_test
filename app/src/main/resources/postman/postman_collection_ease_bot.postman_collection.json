@@ -1,0 +1,761 @@
+{
+	"info": {
+		"_postman_id": "8385300f-b4b5-4804-82d4-8ad3998158e5",
+		"name": "postman_collection_ease_bot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "computer",
+			"item": [
+				{
+					"name": "add computer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test create computer\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('120-230-9034324');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(23);\r",
+									"    pm.expect(jsonData.computerType.name, '\"computerType\" field').to.eql('desktop');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\":\"120-230-9034324\",\r\n    \"manufacturer\":{\r\n        \"name\":\"iLab\"\r\n    },\r\n    \"price\":180000.43,\r\n    \"quantity\":23,\r\n    \"computerTypeId\": 1\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/computers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"computers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change computer quantity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test change computer quantity\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('120-230-9034324');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(10);\r",
+									"    pm.expect(jsonData.computerType.name, '\"computerType\" field').to.eql('desktop');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\":\"120-230-9034324\",\r\n    \"quantity\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/computers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"computers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get computers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.expect(jsonData.length, 'computers in total 1').to.eql(1);\r",
+									"\r",
+									"    pm.expect(jsonData[0].serialNumber, '\"serialNumber\" field').to.eql('120-230-9034324');\r",
+									"    pm.expect(jsonData[0].manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData[0].quantity, '\"quantity\" field').to.eql(10);\r",
+									"    pm.expect(jsonData[0].computerType.name, '\"computerType\" field').to.eql('desktop');\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/computers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"computers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get computer by serial number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test get computer by serial number\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('120-230-9034324');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(10);\r",
+									"    pm.expect(jsonData.computerType.name, '\"computerType\" field').to.eql('desktop');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/computers/120-230-9034324",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"computers",
+								"120-230-9034324"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "monitor",
+			"item": [
+				{
+					"name": "add monitor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test create monitor\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(23);\r",
+									"    pm.expect(jsonData.screenSize.id, '\"screenSize.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData.screenSize.size, '\"screenSize.size\" field').to.eql(15);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\":\"265-4325-235236\",\r\n    \"manufacturer\":{\r\n        \"name\":\"iLab\"\r\n    },\r\n    \"price\":26500,\r\n    \"quantity\":23,\r\n    \"screenSizeId\":1\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/monitors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"monitors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change monitor size",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test change monitor size\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(23);\r",
+									"    pm.expect(jsonData.screenSize.id, '\"screenSize.id\" field').to.eql(2);\r",
+									"     pm.expect(jsonData.screenSize.size, '\"screenSize.size\" field').to.eql(17);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\":\"265-4325-235236\",\r\n    \"screenSizeId\":2\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/monitors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"monitors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get monitors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test get monitors\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData[0].manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData[0].quantity, '\"quantity\" field').to.eql(23);\r",
+									"    pm.expect(jsonData[0].screenSize.id, '\"screenSize.id\" field').to.eql(2);\r",
+									"     pm.expect(jsonData[0].screenSize.size, '\"screenSize.size\" field').to.eql(17);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/monitors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"monitors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get monitor by serial number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test get monitors by serial number\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(23);\r",
+									"    pm.expect(jsonData.screenSize.id, '\"screenSize.id\" field').to.eql(2);\r",
+									"     pm.expect(jsonData.screenSize.size, '\"screenSize.size\" field').to.eql(17);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/monitors/265-4325-235236",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"monitors",
+								"265-4325-235236"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "harddrive",
+			"item": [
+				{
+					"name": "add hard drive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test create hard drive\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(5);\r",
+									"    pm.expect(jsonData.price, '\"price\" field').to.eql(15000);\r",
+									"    pm.expect(jsonData.capacityType.id, '\"capacityType.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData.capacityType.capacity, '\"capacityType.capacity\" field').to.eql(64);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\":\"265-4325-235236\",\r\n    \"manufacturer\":{\r\n        \"name\":\"iLab\"\r\n    },\r\n    \"price\":15000,\r\n    \"quantity\":5,\r\n    \"capacityTypeId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/harddrives",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"harddrives"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change hard drive price",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test change price hard drive\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(5);\r",
+									"    pm.expect(jsonData.price, '\"price\" field').to.eql(10000);\r",
+									"    pm.expect(jsonData.capacityType.id, '\"capacityType.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData.capacityType.capacity, '\"capacityType.capacity\" field').to.eql(64);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\":\"265-4325-235236\",\r\n    \"price\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/harddrives",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"harddrives"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get hard drive by serial number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test change price hard drive\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(5);\r",
+									"    pm.expect(jsonData.price, '\"price\" field').to.eql(10000);\r",
+									"    pm.expect(jsonData.capacityType.id, '\"capacityType.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData.capacityType.capacity, '\"capacityType.capacity\" field').to.eql(64);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/harddrives/265-4325-235236",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"harddrives",
+								"265-4325-235236"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get hard drives",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test change price hard drive\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData[0].manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData[0].quantity, '\"quantity\" field').to.eql(5);\r",
+									"    pm.expect(jsonData[0].price, '\"price\" field').to.eql(10000);\r",
+									"    pm.expect(jsonData[0].capacityType.id, '\"capacityType.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData[0].capacityType.capacity, '\"capacityType.capacity\" field').to.eql(64);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/harddrives",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"harddrives"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "laptop",
+			"item": [
+				{
+					"name": "add laptop",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test create laptop\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(5);\r",
+									"    pm.expect(jsonData.price, '\"price\" field').to.eql(10000);\r",
+									"    pm.expect(jsonData.inchType.id, '\"inchType.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData.inchType.inches, '\"inchType.inches\" field').to.eql(13);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\":\"265-4325-235236\",\r\n    \"manufacturer\":{\r\n        \"name\":\"iLab\"\r\n    },\r\n    \"price\":10000,\r\n    \"quantity\":5,\r\n    \"inchTypeId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/laptops",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"laptops"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change laptop quantity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test create laptop\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(10);\r",
+									"    pm.expect(jsonData.price, '\"price\" field').to.eql(10000);\r",
+									"    pm.expect(jsonData.inchType.id, '\"inchType.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData.inchType.inches, '\"inchType.inches\" field').to.eql(13);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\":\"265-4325-235236\",\r\n    \"quantity\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/laptops",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"laptops"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get laptop by serial number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test create laptop\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData.manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData.quantity, '\"quantity\" field').to.eql(10);\r",
+									"    pm.expect(jsonData.price, '\"price\" field').to.eql(10000);\r",
+									"    pm.expect(jsonData.inchType.id, '\"inchType.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData.inchType.inches, '\"inchType.inches\" field').to.eql(13);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/laptops/265-4325-235236",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"laptops",
+								"265-4325-235236"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get laptops",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test create laptop\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].serialNumber, '\"serialNumber\" field').to.eql('265-4325-235236');\r",
+									"    pm.expect(jsonData[0].manufacturer.name, '\"manufacturer\" field').to.eql('iLab');\r",
+									"    pm.expect(jsonData[0].quantity, '\"quantity\" field').to.eql(10);\r",
+									"    pm.expect(jsonData[0].price, '\"price\" field').to.eql(10000);\r",
+									"    pm.expect(jsonData[0].inchType.id, '\"inchType.id\" field').to.eql(1);\r",
+									"     pm.expect(jsonData[0].inchType.inches, '\"inchType.inches\" field').to.eql(13);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/laptops",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"laptops"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api/v1",
+			"type": "default"
+		}
+	]
+}
